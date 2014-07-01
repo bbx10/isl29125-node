@@ -1,0 +1,26 @@
+{
+  "name": "isl29125",
+  "version": "0.1.0",
+  "description": "ISL29125 RGB light sensor with i2c interface",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/bbx10/isl29125-node.git"
+  },
+  "keywords": [
+    "light",
+    "sensor",
+    "i2c"
+  ],
+  "author": "bbx10node",
+  "license": "MIT",
+  "readmeFilename": "README.md",
+  "gitHead": "d584b5fba77f7132a66e2f061ea8747aa6addc2f",
+  "dependencies": {
+    "i2c": "~0.1.4"
+  },
+  "devDependencies": {}
+}

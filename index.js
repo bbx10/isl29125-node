@@ -1,3 +1,4 @@
+/*
 The MIT License (MIT)
 
 Copyright (c) 2014 bbx10node@gmail.com
@@ -19,3 +20,50 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
+ */
+
+// Demonstrate reading RGB values from an Intersil ISL29125 ligth sensor using
+// node.js.
+//
+// Tested using a Sparkfun breakout board and a Raspberry Pi
+// https://www.sparkfun.com/products/12829
+//
+// RGB values printed using console every second.
+//
+var i2c = require('i2c');
+var isl29125 = require('./isl29125');
+
+// The device is correct for Raspberry Pi but could be different on other
+// systems.
+var ISL29125_ADDR = 0x44;
+var lightsensor = new isl29125(ISL29125_ADDR, {device: '/dev/i2c-1'});
+
+if (lightsensor === null) {
+    console.log("ISL29125 not found");
+    process.exit(-1);
+}
+
+lightsensor.init(function(err) {
+    "use strict";
+    if (err) {
+        console.log(err);
+        process.exit(-2);
+    }
+    else {
+        console.log('ISL29125 ready');
+        showRGB();
+    }
+});
+
+function showRGB() {
+    "use strict";
+    lightsensor.readRGB(function(err, data) {
+        if (err) {
+            console.log(err);
+        }
+        else {
+            console.log(data.red, data.green, data.blue);
+        }
+        setTimeout(showRGB, 1000);
+    });
+}
