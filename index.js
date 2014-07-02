@@ -30,7 +30,6 @@ SOFTWARE.
 //
 // RGB values printed using console every second.
 //
-var i2c = require('i2c');
 var isl29125 = require('./isl29125');
 
 // The device is correct for Raspberry Pi but could be different on other
